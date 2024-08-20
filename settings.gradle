@@ -1,0 +1,2 @@
+rootProject.name = 'spring-template'
+include('api:member:config', 'api:member:core', 'api:member:app', 'web:member')
