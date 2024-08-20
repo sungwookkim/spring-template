@@ -1,7 +1,7 @@
 package com.member.common.exception;
 
 import com.member.common.http.ProcessCode;
-import com.member.spring.config.handler.RestExceptionHandler;
+import com.member.spring.handler.RestExceptionHandler;
 import lombok.Getter;
 
 /**

@@ -1,4 +1,4 @@
-package com.member.spring.config.handler;
+package com.member.spring.handler;
 
 import com.member.common.exception.ProcessException;
 import com.member.common.http.ProcessCode;
