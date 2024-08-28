@@ -38,7 +38,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.task.configuration.EnableTask;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.transaction.PlatformTransactionManager;
 
@@ -47,7 +46,6 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableTask
-/*@EnableBatchProcessing*/
 public class BillingConfiguration {
 	private final JobRepository jobRepository;
 	private final PlatformTransactionManager transactionManager;
