@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    username: user
+    password: userpassword
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:4406/exampledb?useSSL=false
+  cloud:
+    task:
+      initialize-enabled: false
+  batch:
+    jdbc:
+      table-prefix: BOOT3_BATCH_
