@@ -10,3 +10,5 @@ spring:
   batch:
     jdbc:
       table-prefix: BOOT3_BATCH_
+    job:
+      name: ${job.name:NONE}
