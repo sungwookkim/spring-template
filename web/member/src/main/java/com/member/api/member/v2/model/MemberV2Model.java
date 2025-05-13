@@ -3,9 +3,7 @@ package com.member.api.member.v2.model;
 import com.member.common.exception.ProcessException;
 import com.member.common.helper.lang.StringUtils;
 import com.member.common.http.ProcessCode;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.Optional;
