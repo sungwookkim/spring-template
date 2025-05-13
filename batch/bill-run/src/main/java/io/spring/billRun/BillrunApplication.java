@@ -1,5 +1,6 @@
 package io.spring.billRun;
 
+import io.spring.billRun.config.SpringApplicationFailedEvent;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -7,7 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class BillrunApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BillrunApplication.class, args);
-	}
+		SpringApplication app = new SpringApplication(BillrunApplication.class);
+		app.addListeners(new SpringApplicationFailedEvent());
 
+		app.run(args);
+	}
 }

@@ -17,4 +17,9 @@ public class MemberJpaCommandServiceImpl implements MemberCommandService {
     public void save(Member member) {
         this.memberJpaRepository.save(member);
     }
+
+    @Override
+    public int update(Member member) {
+        throw new IllegalStateException("지원하지 않는 기능 입니다.");
+    }
 }

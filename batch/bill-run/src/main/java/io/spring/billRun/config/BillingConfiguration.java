@@ -50,7 +50,8 @@ public class BillingConfiguration {
 	private final JobRepository jobRepository;
 	private final PlatformTransactionManager transactionManager;
 
-	public BillingConfiguration(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
+	public BillingConfiguration(JobRepository jobRepository
+			, PlatformTransactionManager transactionManager) {
 		this.jobRepository = jobRepository;
 		this.transactionManager = transactionManager;
 	}

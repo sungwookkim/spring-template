@@ -23,10 +23,10 @@ public class MemberDBConfig {
         private final String username;
         private final String password;
 
-        public MemberDatasourceConfig(@Value("${spring.datasource.h2.driver-class-name}")String driverClassName
-                , @Value("${spring.datasource.h2.url}") String url
-                , @Value("${spring.datasource.h2.username}") String username
-                , @Value("${spring.datasource.h2.password}") String password) {
+        public MemberDatasourceConfig(@Value("${spring.datasource.driver-class-name}")String driverClassName
+                , @Value("${spring.datasource.url}") String url
+                , @Value("${spring.datasource.username}") String username
+                , @Value("${spring.datasource.password}") String password) {
             this.driverClassName = driverClassName;
             this.url = url;
             this.username = username;

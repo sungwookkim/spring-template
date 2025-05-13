@@ -17,4 +17,9 @@ public class MemberMybatisCommandServiceImpl implements MemberCommandService {
     public void save(Member member) {
         this.memberMybatisRepository.save(member);
     }
+
+    @Override
+    public int update(Member member) {
+        return this.memberMybatisRepository.updte(member);
+    }
 }

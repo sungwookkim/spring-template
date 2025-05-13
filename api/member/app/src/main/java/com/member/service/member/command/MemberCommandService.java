@@ -4,4 +4,5 @@ import com.member.domain.entity.Member;
 
 public interface MemberCommandService {
     void save(Member member);
+    int update(Member member);
 }

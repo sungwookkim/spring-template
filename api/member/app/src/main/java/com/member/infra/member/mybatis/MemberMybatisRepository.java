@@ -2,10 +2,7 @@ package com.member.infra.member.mybatis;
 
 import com.member.domain.entity.Member;
 import com.member.domain.repository.MemberRepository;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 @Mapper
 public interface MemberMybatisRepository extends MemberRepository {
@@ -31,4 +28,12 @@ public interface MemberMybatisRepository extends MemberRepository {
     """)
     @Override
     Member findByName(String memberName);
+
+    @Update("""
+    update member set
+        name = #{name}
+        , age = #{age}
+    where member_id = #{memberId}
+    """)
+    int updte(Member member);
 }
