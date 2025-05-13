@@ -1,7 +1,7 @@
 package com.member.api.member;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.member.api.member.v2.model.MemberV2Model.ReqMemberV2Save;
+import com.member.api.member.v2.model.MemberV2Model.ReqV2MemberSave;
 import com.member.common.http.ProcessCode;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,7 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static com.member.api.member.v1.model.MemberV1Model.ReqMemberV1Save;
+import static com.member.api.member.v1.model.MemberV1Model.ReqV1MemberSave;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -31,13 +31,13 @@ public class MemberControllerTest {
     @Test
     @DisplayName("[post] /v1/member")
     void memberV1Save() throws Exception {
-        ReqMemberV1Save reqMemberV1Save = new ReqMemberV1Save();
-        reqMemberV1Save.setName("김성욱");
-        reqMemberV1Save.setAge(40);
+        ReqV1MemberSave reqV1MemberSave = new ReqV1MemberSave();
+        reqV1MemberSave.setName("김성욱");
+        reqV1MemberSave.setAge(40);
 
         this.mockMvc.perform(post("/v1/member")
                 .contentType("application/json")
-                .content(this.objectMapper.writeValueAsString(reqMemberV1Save)))
+                .content(this.objectMapper.writeValueAsString(reqV1MemberSave)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("httpStatus.code").value(HttpStatus.OK.value()))
                 .andExpect(jsonPath("processCode").value(ProcessCode.Common.SUCCESS.getCode()))
@@ -47,7 +47,7 @@ public class MemberControllerTest {
     @Test
     @DisplayName("[post] 예외 /v1/member")
     void memberV1SaveException() throws Exception {
-        ReqMemberV1Save reqMemberV1Save = new ReqMemberV1Save();
+        ReqV1MemberSave reqV1MemberSave = new ReqV1MemberSave();
         /*
         이름에 값이 없는 경우
          */
@@ -61,12 +61,12 @@ public class MemberControllerTest {
         /*
         전부 없는 경우
          */
-        reqMemberV1Save.setName(null);
-        reqMemberV1Save.setAge(null);
+        reqV1MemberSave.setName(null);
+        reqV1MemberSave.setAge(null);
 
         this.mockMvc.perform(post("/v1/member")
                         .contentType("application/json")
-                        .content(this.objectMapper.writeValueAsString(reqMemberV1Save)))
+                        .content(this.objectMapper.writeValueAsString(reqV1MemberSave)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("httpStatus.code").value(503))
                 .andExpect(jsonPath("processCode").value("-10"))
@@ -116,13 +116,13 @@ public class MemberControllerTest {
     @Test
     @DisplayName("[post] /v2/member")
     void memberV2Save() throws Exception {
-        ReqMemberV2Save reqMemberV2Save = new ReqMemberV2Save();
-        reqMemberV2Save.setName("김성욱");
-        reqMemberV2Save.setAge(40);
+        ReqV2MemberSave reqV2MemberSave = new ReqV2MemberSave();
+        reqV2MemberSave.setName("김성욱");
+        reqV2MemberSave.setAge(40);
 
         this.mockMvc.perform(post("/v2/member")
                         .contentType("application/json")
-                        .content(this.objectMapper.writeValueAsString(reqMemberV2Save)))
+                        .content(this.objectMapper.writeValueAsString(reqV2MemberSave)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("httpStatus.code").value(HttpStatus.OK.value()))
                 .andExpect(jsonPath("processCode").value(ProcessCode.Common.SUCCESS.getCode()))
@@ -132,7 +132,7 @@ public class MemberControllerTest {
     @Test
     @DisplayName("[post] 예외 /v2/member")
     void memberV2SaveException() throws Exception {
-        ReqMemberV2Save reqMemberV2Save = new ReqMemberV2Save();
+        ReqV2MemberSave reqV2MemberSave = new ReqV2MemberSave();
         /*
         이름에 값이 없는 경우
          */
@@ -146,12 +146,12 @@ public class MemberControllerTest {
         /*
         전부 없는 경우
          */
-        reqMemberV2Save.setName(null);
-        reqMemberV2Save.setAge(null);
+        reqV2MemberSave.setName(null);
+        reqV2MemberSave.setAge(null);
 
         this.mockMvc.perform(post("/v2/member")
                         .contentType("application/json")
-                        .content(this.objectMapper.writeValueAsString(reqMemberV2Save)))
+                        .content(this.objectMapper.writeValueAsString(reqV2MemberSave)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("httpStatus.code").value(503))
                 .andExpect(jsonPath("processCode").value("-10"))
@@ -161,13 +161,13 @@ public class MemberControllerTest {
     @Test
     @DisplayName("[post] /v2/v1/member")
     void memberV2MybatisSave() throws Exception {
-        ReqMemberV1Save reqMemberV1Save = new ReqMemberV1Save();
-        reqMemberV1Save.setName("김성욱");
-        reqMemberV1Save.setAge(40);
+        ReqV1MemberSave reqV1MemberSave = new ReqV1MemberSave();
+        reqV1MemberSave.setName("김성욱");
+        reqV1MemberSave.setAge(40);
 
         this.mockMvc.perform(post("/v2/v1/member")
                         .contentType("application/json")
-                        .content(this.objectMapper.writeValueAsString(reqMemberV1Save)))
+                        .content(this.objectMapper.writeValueAsString(reqV1MemberSave)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("httpStatus.code").value(HttpStatus.OK.value()))
                 .andExpect(jsonPath("processCode").value(ProcessCode.Common.SUCCESS.getCode()))

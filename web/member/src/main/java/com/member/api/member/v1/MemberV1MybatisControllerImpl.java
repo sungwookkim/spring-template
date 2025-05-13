@@ -1,7 +1,7 @@
 package com.member.api.member.v1;
 
 import com.member.api.member.v1.model.MemberV1Model.MemberV1ProcessCode;
-import com.member.api.member.v1.model.MemberV1Model.ReqMemberV1Save;
+import com.member.api.member.v1.model.MemberV1Model.ReqV1MemberSave;
 import com.member.api.member.v1.model.MemberV1Model.RespV1FindMember;
 import com.member.common.exception.ProcessException;
 import com.member.common.helper.lang.StringUtils;
@@ -21,7 +21,7 @@ public class MemberV1MybatisControllerImpl implements MemberV1Controller {
     private final MemberReadService memberMybatisReadServiceImpl;
 
     @Override
-    public RestResponseResult<String> save(ReqMemberV1Save reqSave) {
+    public RestResponseResult<String> save(ReqV1MemberSave reqSave) {
         reqSave.validate();
 
         Member member = new Member(reqSave.getName(), reqSave.getAge());

@@ -14,7 +14,7 @@ public class MemberV2Model {
 
     @Data
     @NoArgsConstructor
-    public static class ReqMemberV2Save {
+    public static class ReqV2MemberSave {
         private String name;
         private Integer age;
         public void validate() {
@@ -28,12 +28,7 @@ public class MemberV2Model {
         }
     }
 
-    @Getter
-    @AllArgsConstructor
-    public static class RespV2FindMember {
-        private final String name;
-        private final Integer age;
-
+    public record RespV2FindMember(String name, Integer age) {
         public static RespV2FindMember empty() {
             return new RespV2FindMember("", 0);
         }
