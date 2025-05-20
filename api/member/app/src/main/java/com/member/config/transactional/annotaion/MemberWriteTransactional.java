@@ -11,7 +11,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
 @Documented
-@Transactional(transactionManager = "memberTransactionManager")
+@Transactional(transactionManager = "memberTransactionManager", rollbackFor = Exception.class)
 public @interface MemberWriteTransactional {
     @AliasFor(annotation = Transactional.class)
     String[] label() default {};
