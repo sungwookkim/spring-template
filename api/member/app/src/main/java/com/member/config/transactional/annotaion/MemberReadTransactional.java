@@ -11,7 +11,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
 @Documented
-@Transactional(transactionManager = "memberTransactionManager", readOnly = true)
+@Transactional(transactionManager = "memberTransactionManager", readOnly = true, propagation = Propagation.REQUIRES_NEW)
 public @interface MemberReadTransactional {
     @AliasFor(annotation = Transactional.class)
     String[] label() default {};
