@@ -1,8 +1,0 @@
-spring:
-  jpa:
-    open-in-view: false
-
-decorator:
-  datasource:
-    p6spy:
-      enable-logging: true

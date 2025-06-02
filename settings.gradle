@@ -1,8 +1,15 @@
 rootProject.name = 'spring-template'
-include('api:member:config', 'api:member:core', 'api:member:app', 'web:member', 'batch:bill-run', 'batch:bill-setup-task')
-/*include 'batch'
-include 'batch:bill-setup-task'
-findProject(':batch:bill-setup-task')?.name = 'bill-setup-task'
-include 'batch:bill-run'
-findProject(':batch:bill-run')?.name = 'bill-run'*/
+include('core:core-member'
+        , 'core:core-product'
+        , 'core:core-outboxEvent'
+        , 'core:core-payload'
 
+        , 'api:api-member'
+        , 'api:api-product'
+
+        , 'app:app-product:app-product-kafka'
+
+        , 'web:web-member'
+
+        , 'batch:bill-run'
+        , 'batch:bill-setup-task')
