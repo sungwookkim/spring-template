@@ -1,0 +1,61 @@
+networks:
+  cdc_network:
+
+volumes:
+  Kafka00:
+    driver: local
+
+services:
+  kafka:
+    image: bitnami/kafka:3.5.2
+    restart: unless-stopped
+    container_name: kafka
+    ports:
+      - '9094:9094'
+      - '9092:9092'
+      - '9093:9093'
+    environment:
+      - KAFKA_CFG_ADDITIONAL_CONFIG=plugin.path=/opt/bitnami/kafka/plugins
+      - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
+      - KAFKA_CFG_BROKER_ID=0
+      - KAFKA_CFG_NODE_ID=0
+      - KAFKA_CFG_MODE=KRaft
+      - KAFKA_CFG_KRAFT_CLUSTER_ID=HsDBs9l6UUmQq7Y5E6bNlw
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka:9093
+      - KAFKA_CFG_PROCESS_ROLES=controller,broker
+      - ALLOW_CFG_PLAINTEXT_LISTENER=yes
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://kafka:9092,CONTROLLER://kafka:9093,EXTERNAL://kafka:9094
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092,EXTERNAL://kafka:9094
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,EXTERNAL:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+    volumes:
+      - ./plugins:/opt/bitnami/kafka/plugins
+      - ./connect-config:/opt/bitnami/kafka/config/connect-config
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    restart: unless-stopped
+    container_name: kafka-ui
+    ports:
+      - '8080:8080'
+    environment:
+      - KAFKA_CLUSTERS_0_NAME=Kraft-Cluster
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9094
+      - DYNAMIC_CONFIG_ENABLED=true
+      #- KAFKA_CLUSTERS_0_AUDIT_TOPICAUDITENABLED=true
+      # - KAFKA_CLUSTERS_0_AUDIT_CONSOLEAUDITENABLED=true
+      - KAFKA_CLUSTERS_0_KAFKACONNECT_0_NAME=first
+      - KAFKA_CLUSTERS_0_KAFKACONNECT_0_ADDRESS=http://kafka-connect0:8083
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword  # 루트 사용자 비밀번호
+      MYSQL_DATABASE: exampledb          # 기본 생성할 데이터베이스 이름
+      MYSQL_USER: user                   # 사용자 이름
+      MYSQL_PASSWORD: userpassword       # 사용자 비밀번호
+      innodb_ft_min_token_size: 2
+    ports:
+      - "3306:3306"  # 호스트의 3306 포트를 컨테이너의 3306 포트에 매핑
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+      - ./mysql-data/my.cnf:/etc/my.cnf
