@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.util.stream.IntStream;
+
 @ActiveProfiles(value = {"api-product-test"})
 @SpringBootTest
 public class OutboxEventRelayTest {
@@ -35,6 +37,28 @@ public class OutboxEventRelayTest {
 
         // when
         this.productJapCommandServiceImpl.saveCategoryAndProductAndProductOptionAndStock(category);
+
+        // then
+        this.outboxEventRelay.pollAndPublishEvents();
+    }
+
+    @Test
+    @DisplayName("병렬 relay 테스트")
+    void parallelRelayTest() {
+        IntStream.range(0, 1000).parallel().forEach(i -> {
+            //give
+            Category category = new Category("가전");
+            Product product = new Product("우리집 TV", "우리집에서 만든 TV", 1000);
+            ProductOption productOption = new ProductOption("색깔", "BLACK");
+            Stock stock = new Stock(100);
+
+            productOption.setStock(stock);
+            product.addProductOption(productOption);
+            category.addProduct(product);
+
+            // when
+            this.productJapCommandServiceImpl.saveCategoryAndProductAndProductOptionAndStock(category);
+        });
 
         // then
         this.outboxEventRelay.pollAndPublishEvents();

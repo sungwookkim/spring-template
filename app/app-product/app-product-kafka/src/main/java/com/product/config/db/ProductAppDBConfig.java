@@ -1,0 +1,48 @@
+package com.product.config.db;
+
+import com.zaxxer.hikari.HikariDataSource;
+import lombok.Getter;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import javax.sql.DataSource;
+
+@Configuration
+@Getter
+public class ProductAppDBConfig {
+
+    /**
+     * DataSource 객체 반환 클래스
+     */
+    @Configuration
+    @Getter
+    public static class ProductAppDatasourceConfig {
+        private final String driverClassName;
+        private final String url;
+        private final String username;
+        private final String password;
+
+        public ProductAppDatasourceConfig(@Value("${spring.datasource.driver-class-name}")String driverClassName
+                , @Value("${spring.datasource.url}") String url
+                , @Value("${spring.datasource.username}") String username
+                , @Value("${spring.datasource.password}") String password) {
+            this.driverClassName = driverClassName;
+            this.url = url;
+            this.username = username;
+            this.password = password;
+        }
+
+        @Bean
+        public DataSource productAppDatasource() {
+            HikariDataSource hikariDataSource = new HikariDataSource();
+            hikariDataSource.setPoolName("product-app-db");
+            hikariDataSource.setDriverClassName(this.driverClassName);
+            hikariDataSource.setJdbcUrl(this.url);
+            hikariDataSource.setUsername(this.username);
+            hikariDataSource.setPassword(this.password);
+
+            return hikariDataSource;
+        }
+    }
+}

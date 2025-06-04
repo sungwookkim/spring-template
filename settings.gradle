@@ -3,6 +3,7 @@ include('core:core-member'
         , 'core:core-product'
         , 'core:core-outboxEvent'
         , 'core:core-payload'
+        , 'core:core-inboxEvent'
 
         , 'api:api-member'
         , 'api:api-product'

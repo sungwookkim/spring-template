@@ -1,4 +1,4 @@
-package com.product.kafka.helper;
+package com.product.helper.kafka;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

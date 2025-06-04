@@ -1,4 +1,4 @@
-package com.product.kafka.helper;
+package com.product.helper.kafka;
 
 public class KafkaInfo {
     public static class Topic {

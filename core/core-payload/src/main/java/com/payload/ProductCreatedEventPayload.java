@@ -13,5 +13,5 @@ package com.payload;
  * - categoryId: 제품이 속한 카테고리의 식별자
  * - productId: 생성된 제품의 식별자
  */
-public record ProductCreatedEventPayload(Long categoryId, Long productId) {
+public record ProductCreatedEventPayload(String aggregateId, Long categoryId, Long productId) {
 }

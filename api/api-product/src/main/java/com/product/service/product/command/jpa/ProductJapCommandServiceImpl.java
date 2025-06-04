@@ -36,11 +36,13 @@ public class ProductJapCommandServiceImpl implements ProductCommandService {
 
         List<OutboxEvent> outboxEvents = new ArrayList<>();
         for(Product product : products) {
+            String aggregateId = String.format("%s-%d-%d", MessageHelper.Kafka.MessageKey.EVENT_PRODUCT, categoryId, product.getProductId());
+
             outboxEvents.add(OutboxEvent.create(Category.CLASS_NAME
-                    , String.format("%s-%d-%d", MessageHelper.Kafka.MessageKey.EVENT_PRODUCT, categoryId, product.getProductId())
+                    , aggregateId
                     , MessageHelper.Kafka.SOURCE_SYSTEM
                     , MessageHelper.Kafka.MessageKey.EVENT_PRODUCT
-                    , new ProductCreatedEventPayload(categoryId, product.getProductId())));
+                    , new ProductCreatedEventPayload(aggregateId, categoryId, product.getProductId())));
         }
 
         this.outboxEventDecoratorServiceImpl.save(outboxEvents);
