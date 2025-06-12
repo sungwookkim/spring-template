@@ -2,6 +2,7 @@ package com.product.helper.kafka;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.annotation.PostConstruct;
 import lombok.Getter;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
@@ -15,6 +16,9 @@ import java.util.concurrent.CompletableFuture;
  */
 @Component
 public class ProducerHelper {
+    @Getter
+    private static volatile ProducerHelper instance;
+
     private final ObjectMapper objectMapper;
 
     @Getter
@@ -39,18 +43,8 @@ public class ProducerHelper {
         }
     }
 
-    /**
-     * {@link ProducerHelper}의 싱글톤 인스턴스를 제공하기 위해 사용되는 정적 내부 클래스입니다.
-     * 이 클래스는 Spring의 {@link Component}로 표시되어 있어, Spring 컨테이너에 의해 관리될 수 있습니다.
-     * 싱글톤 디자인 패턴은 애플리케이션의 생명 주기 동안 {@link ProducerHelper} 인스턴스가 단 하나만 존재하도록 보장합니다.
-     */
-    @Component
-    public static class Singleton {
-        @Getter
-        private static ProducerHelper instance;
-
-        Singleton(ProducerHelper producerHelper) {
-            instance = producerHelper;
-        }
+    @PostConstruct
+    private void setInstance() {
+        instance = this;
     }
 }

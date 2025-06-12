@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-@ActiveProfiles(value = {"api-product-test"})
+@ActiveProfiles(value = {"api-product-test_db"})
 @SpringBootTest
 public class ProductJapCommandServiceImplTest {
     @Autowired

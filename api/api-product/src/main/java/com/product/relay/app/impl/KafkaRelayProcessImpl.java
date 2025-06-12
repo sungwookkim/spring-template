@@ -30,7 +30,7 @@ public class KafkaRelayProcessImpl implements RelayProcess {
 
     @Override
     public void send(OutboxEvent outboxEvent) {
-        ProducerHelper.Singleton.getInstance().send(outboxEvent.getMessageKey(), outboxEvent.getPayload())
+        ProducerHelper.getInstance().send(outboxEvent.getMessageKey(), outboxEvent.getPayload())
                 .whenComplete((r, e) -> {
                     OutboxEventStatus outboxEventStatus = OutboxEventStatus.PUBLISHED;
                     if(Objects.nonNull(e)) {

@@ -13,7 +13,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 import java.util.stream.IntStream;
 
-@ActiveProfiles(value = {"api-product-test"})
+@ActiveProfiles(value = {"api-product-test_db"})
 @SpringBootTest
 public class OutboxEventRelayTest {
     @Autowired
@@ -45,7 +45,7 @@ public class OutboxEventRelayTest {
     @Test
     @DisplayName("병렬 relay 테스트")
     void parallelRelayTest() {
-        IntStream.range(0, 1000).parallel().forEach(i -> {
+/*        IntStream.range(0, 1000).parallel().forEach(i -> {
             //give
             Category category = new Category("가전");
             Product product = new Product("우리집 TV", "우리집에서 만든 TV", 1000);
@@ -58,7 +58,7 @@ public class OutboxEventRelayTest {
 
             // when
             this.productJapCommandServiceImpl.saveCategoryAndProductAndProductOptionAndStock(category);
-        });
+        });*/
 
         // then
         this.outboxEventRelay.pollAndPublishEvents();

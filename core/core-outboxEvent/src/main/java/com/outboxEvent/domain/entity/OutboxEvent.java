@@ -73,7 +73,6 @@ public class OutboxEvent {
      * @throws IllegalArgumentException 페이로드를 JSON 문자열로 직렬화할 수 없는 경우 발생
      */
     public static <T> OutboxEvent create(String aggregateType, String aggregateId, String sourceSystem, String messageKey, T payload) {
-        LocalDateTime now = LocalDateTime.now();
         OutboxEvent outboxEvent = new OutboxEvent();
         outboxEvent.aggregateType = aggregateType;
         outboxEvent.aggregateId = aggregateId;
@@ -83,7 +82,7 @@ public class OutboxEvent {
         outboxEvent.status = OutboxEventStatus.PENDING;
 
         try {
-            outboxEvent.payload = JsonHelper.Singleton.getInstance().getObjectMapper().writeValueAsString(payload);
+            outboxEvent.payload = JsonHelper.getInstance().getObjectMapper().writeValueAsString(payload);
         } catch (JsonProcessingException e) {
             throw new IllegalArgumentException(e);
         }
