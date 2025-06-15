@@ -128,7 +128,7 @@
 
 -   **`com.member.common.helper.lang.StringUtils`**:
     -   문자열 검증 유틸리티 (`isNotBlank`, `isBlank`, `isNotEmpty`, `isEmpty`).
-    -   `notBlankAndNotEmptyValidate(Object value)`: `Optional`과 함수형 인터페이스를 사용하여 객체 값을 문자열로 변환 후, 비어있거나 공백만 있는지 검증하여 유효하면 해당 문자열을, 아니면 빈 문자열을 반환합니다. **(주의: 현재 컨트롤러에서는 이 메서드의 반환값이 빈 문자열인지 비교하여 예외를 던지고 있어, 사실상 boolean 반환처럼 사용되고 있습니다.)**
+    -   `notBlankAndNotEmptyValidate(Object value)`: `Optional`과 함수형 인터페이스를 사용하여 객체 값을 문자열로 변환 후, 비어있거나 공백만 있는지 검증하여 유효하면 해당 문자열을, 아니면 빈 문자열을 반환합니다.
 
 ## 4. 설정 (Configuration)
 
