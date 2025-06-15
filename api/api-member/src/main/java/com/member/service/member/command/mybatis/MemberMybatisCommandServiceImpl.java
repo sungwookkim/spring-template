@@ -20,6 +20,6 @@ public class MemberMybatisCommandServiceImpl implements MemberCommandService {
 
     @Override
     public int update(Member member) {
-        return this.memberMybatisRepository.updte(member);
+        return this.memberMybatisRepository.update(member);
     }
 }

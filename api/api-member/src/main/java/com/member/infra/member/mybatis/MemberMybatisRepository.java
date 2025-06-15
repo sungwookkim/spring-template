@@ -35,5 +35,5 @@ public interface MemberMybatisRepository extends MemberRepository {
         , age = #{age}
     where member_id = #{memberId}
     """)
-    int updte(Member member);
+    int update(Member member);
 }
