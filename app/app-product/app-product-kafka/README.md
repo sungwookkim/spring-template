@@ -6,8 +6,6 @@
 
 `app/app-product/app-product-kafka` 모듈은 주로 **Apache Kafka로부터 메시지를 수신하고, 이를 처리하여 Inbox Event로 기록**하는 역할을 담당합니다. 이 과정에서 메시지 처리의 **멱등성(Idempotency)**을 보장하는 것을 주요 책임으로 합니다. 수신된 이벤트는 `core-inboxEvent` 모듈의 도메인을 사용하여 관리됩니다.
 
-### 1.2. `README.md` 핵심 내용 (추정)
-
 *   이 모듈은 Kafka 메시지 소비 및 Inbox 패턴을 통한 이벤트 처리에 집중합니다.
 *   모듈 내 `test` 패키지에 있는 `@SpringBootApplication` 클래스(`ProductAppKafkaApplication`은 실제 애플리케이션 클래스이며, 테스트용 별도 Main 클래스가 있다면 해당 클래스)는 **테스트 실행 시 Spring Bean 등록 및 스캔을 위한 용도**이며, 실제 애플리케이션 구동 용도로 사용해서는 안 됩니다 (만약 테스트 전용 Main 클래스가 있다면). 이 모듈을 의존하는 다른 모듈에서 해당 테스트용 Main 클래스를 사용하지 않도록 주의해야 합니다.
 
