@@ -4,6 +4,7 @@ include('core:core-member'
         , 'core:core-outboxEvent'
         , 'core:core-payload'
         , 'core:core-inboxEvent'
+        , 'core:core-role'
 
         , 'api:api-member'
         , 'api:api-product'

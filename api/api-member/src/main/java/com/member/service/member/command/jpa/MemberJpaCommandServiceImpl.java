@@ -5,11 +5,12 @@ import com.member.domain.entity.Member;
 import com.member.infra.member.jpa.MemberJpaRepository;
 import com.member.service.member.command.MemberCommandService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @MemberWriteTransactional
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class MemberJpaCommandServiceImpl implements MemberCommandService {
     private final MemberJpaRepository memberJpaRepository;
 

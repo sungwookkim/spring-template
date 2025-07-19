@@ -15,7 +15,9 @@ configurations {
 
 dependencies {
 	implementation project(':core:core-member')
+	implementation project(':core:core-role')
 
+	implementation 'mysql:mysql-connector-java:8.0.33'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
 	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0'

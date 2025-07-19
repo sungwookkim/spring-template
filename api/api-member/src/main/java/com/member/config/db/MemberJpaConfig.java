@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@EnableJpaRepositories(basePackages = "com.member.infra"
+@EnableJpaRepositories(basePackages = {"com.member.infra"}
     , entityManagerFactoryRef = "memberEntityManagerFactory"
     , transactionManagerRef = "memberTransactionManager")
 public class MemberJpaConfig {
@@ -20,7 +20,7 @@ public class MemberJpaConfig {
     public LocalContainerEntityManagerFactoryBean memberEntityManagerFactory(DataSource memberDatasource) {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(memberDatasource);
-        em.setPackagesToScan("com.member.domain.entity");
+        em.setPackagesToScan("com.member.domain.entity", "com.role.domain.entity");
         em.setPersistenceUnitName("memberPersistenceUnit");
 
         Properties properties = new Properties();
